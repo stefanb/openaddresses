@@ -5,6 +5,17 @@ maxAge=720
 
 countTooOld=3
 
+SEDCMD=sed
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     machine=Linux;;
+    Darwin*)    machine=Mac; SEDCMD=gsed;;
+    CYGWIN*)    machine=Cygwin;;
+    MINGW*)     machine=MinGw;;
+    *)          machine="UNKNOWN:${unameOut};"
+esac
+echo Running on: "${machine}"
+
 if [ -f "${dest}RPE_PE.ZIP"  -a -f "${dest}RPE_UL.ZIP" -a -f "${dest}RPE_HS.ZIP" ] ; then
 	#check age of existing files
 	countTooOld=`find ${dest}RPE_PE.ZIP ${dest}RPE_UL.ZIP ${dest}RPE_HS.ZIP -mmin +${maxAge} | wc -l`
@@ -58,7 +69,7 @@ wget --quiet \
      "https://egp.gu.gov.si/egp/login.html"
 # example login.html content:
 # <input type="hidden" name="_csrf" value="089070ed-b40a-4e3c-ab22-422de0daffff" />
-csrftoken="`sed -n 's/.*name="_csrf"\s\+value="\([^"]\+\).*/\1/p' login.html`"
+csrftoken="`$SEDCMD -n 's/.*name="_csrf"\s\+value="\([^"]\+\).*/\1/p' login.html`"
 rm login.html
 echo Got CSRF token: "${csrftoken}".
 #cat cookies.txt
