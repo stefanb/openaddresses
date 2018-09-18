@@ -26,7 +26,16 @@ ogr2ogr -t_srs "EPSG:4326" -f CSV ${folder}addresses-noname.csv ${folder}HS-etrs
 
 # Street names
 ogr2ogr -f CSV ${folder}street-names.csv ${folder}UL/ -lco SEPARATOR=SEMICOLON -dialect sqlite \
- -sql "SELECT UL_MID, UL_UIME || CASE WHEN UL_DJ IS NULL THEN '' ELSE ' / ' || UL_DJ END AS UL_NAME FROM 'SI.GURS.RPE.PUB.UL'"
+ -sql "SELECT UL_MID, UL_UIME AS UL_NAME FROM 'SI.GURS.RPE.PUB.UL'"
+
+ogr2ogr -f CSV ${folder}street-names-hu.csv ${folder}UL/ -lco SEPARATOR=SEMICOLON -dialect sqlite \
+ -sql "SELECT UL_MID, UL_DJ AS UL_NAME_HU FROM 'SI.GURS.RPE.PUB.UL'"
+
+ogr2ogr -f CSV ${folder}street-names-it.csv ${folder}UL/ -lco SEPARATOR=SEMICOLON -dialect sqlite \
+ -sql "SELECT UL_MID, UL_DJ AS UL_NAME_IT FROM 'SI.GURS.RPE.PUB.UL'"
+
+#ogr2ogr -f CSV ${folder}street-names.csv ${folder}UL/ -lco SEPARATOR=SEMICOLON -dialect sqlite \
+# -sql "SELECT UL_MID, UL_UIME || CASE WHEN UL_DJ IS NULL THEN '' ELSE ' / ' || UL_DJ END AS UL_NAME FROM 'SI.GURS.RPE.PUB.UL'"
 
 # City names
 ogr2ogr -f CSV ${folder}city-names.csv ${folder}NA/ -lco SEPARATOR=SEMICOLON -dialect sqlite \

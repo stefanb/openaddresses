@@ -30,6 +30,8 @@ def main(path):
     # 16172839;Brezovce
     # 16183911;Liparjeva ulica
     streets = readDictionary(path, "street-names.csv")
+    streets_hu = readDictionary(path, "street-names-hu.csv")
+    streets_it = readDictionary(path, "street-names-it.csv")
 
     # ==> city-names.csv <==
     # NA_MID;NA_UIME
@@ -37,6 +39,8 @@ def main(path):
     # 10084300;Podbreg
     # 10085900;Brdce
     cities = readDictionary(path, "city-names.csv")
+    cities_hu = readDictionary(path, "city-names-hu.csv")
+    cities_it = readDictionary(path, "city-names-it.csv")
 
     # ==> commune-names.csv <==
     # OB_MID;OB_UIME
@@ -81,7 +85,7 @@ def main(path):
     # 13.917428708459077;45.926521570535712;67;Otlica;Otlica;Ajdovščina;Goriška;5270;11070230
 
     writer = csv.writer(open(os.path.join(path, 'si-addresses-{}.csv'.format(timestamp)), 'w'), delimiter=";")
-    headers = ['lon', 'lat', 'number', 'street', 'city', 'commune', 'region', 'postcode', 'id']
+    headers = ['lon', 'lat', 'number', 'street', 'street_hu', 'street_it', 'city', 'city_hu', 'city_it', 'commune', 'region', 'postcode', 'id']
     writer.writerow(headers)
 
     with open(os.path.join(path, "addresses-noname.csv")) as f:

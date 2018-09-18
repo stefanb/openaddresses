@@ -18,7 +18,7 @@
         "attribution name": "Geodetska uprava Republike Slovenije / The Surveying and Mapping Authority of the Republic of Slovenia, Register prostorskih enot / Register of Spatial Units, 2018",
         "share-alike": false
     },
-    "language": "sl",
+    "language": "hu",
     "conform": {
         "encoding": "UTF-8",
         "srs": "EPSG:4326",
@@ -28,8 +28,8 @@
         "lon": "lon",
         "lat": "lat",
         "number": "number",
-        "street": "street",
-        "city": "city",
+        "street": "street_hu",
+        "city": "city_hu",
         "district": "commune",
         "region": "region",
         "postcode": "postcode",
